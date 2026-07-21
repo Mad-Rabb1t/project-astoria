@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Cinema Classic - Spin the Wheel</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600&amp;family=Playfair+Display:wght@400;700;900&amp;family=Work+Sans:wght@400&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#ffb4a8",
+                        "surface-dim": "#121414",
+                        "inverse-on-surface": "#2f3131",
+                        "tertiary-fixed": "#e5e2e1",
+                        "on-secondary": "#3a3000",
+                        "surface": "#121414",
+                        "surface-container-highest": "#333535",
+                        "tertiary": "#c8c6c5",
+                        "on-primary-fixed": "#410000",
+                        "inverse-surface": "#e2e2e2",
+                        "on-secondary-fixed": "#221b00",
+                        "surface-tint": "#ffb4a8",
+                        "on-secondary-fixed-variant": "#544600",
+                        "on-primary": "#690000",
+                        "on-primary-container": "#ff907f",
+                        "secondary-container": "#ffdb3c",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "on-surface-variant": "#e3beb8",
+                        "surface-container-lowest": "#0c0f0f",
+                        "surface-variant": "#333535",
+                        "secondary-fixed-dim": "#e9c400",
+                        "secondary": "#fff9ef",
+                        "on-tertiary": "#313030",
+                        "tertiary-container": "#434242",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "on-background": "#e2e2e2",
+                        "on-primary-fixed-variant": "#920703",
+                        "secondary-fixed": "#ffe16d",
+                        "surface-container": "#1e2020",
+                        "outline": "#aa8984",
+                        "error-container": "#93000a",
+                        "outline-variant": "#5a403c",
+                        "surface-container-high": "#282a2b",
+                        "background": "#121414",
+                        "primary-container": "#8b0000",
+                        "on-secondary-container": "#725f00",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-container": "#b1aeae",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "inverse-primary": "#b52619",
+                        "on-surface": "#e2e2e2",
+                        "surface-bright": "#38393a",
+                        "surface-container-low": "#1a1c1c",
+                        "on-error": "#690005",
+                        "primary-fixed": "#ffdad4",
+                        "primary": "#ffb4a8",
+                        "error": "#ffb4ab"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "margin-desktop": "48px",
+                        "gutter": "24px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-lg": [
+                            "Work Sans"
+                        ],
+                        "body-md": [
+                            "Work Sans"
+                        ],
+                        "label-sm": [
+                            "Geist"
+                        ],
+                        "headline-md": [
+                            "Playfair Display"
+                        ],
+                        "display-mobile": [
+                            "Playfair Display"
+                        ],
+                        "display-lg": [
+                            "Playfair Display"
+                        ],
+                        "headline-lg": [
+                            "Playfair Display"
+                        ]
+                    },
+                    "fontSize": {
+                        "body-lg": [
+                            "18px",
+                            {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                            }
+                        ],
+                        "body-md": [
+                            "16px",
+                            {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                            }
+                        ],
+                        "label-sm": [
+                            "12px",
+                            {
+                                "lineHeight": "1",
+                                "letterSpacing": "0.1em",
+                                "fontWeight": "600"
+                            }
+                        ],
+                        "headline-md": [
+                            "24px",
+                            {
+                                "lineHeight": "1.4",
+                                "fontWeight": "700"
+                            }
+                        ],
+                        "display-mobile": [
+                            "40px",
+                            {
+                                "lineHeight": "1.2",
+                                "fontWeight": "900"
+                            }
+                        ],
+                        "display-lg": [
+                            "64px",
+                            {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "900"
+                            }
+                        ],
+                        "headline-lg": [
+                            "32px",
+                            {
+                                "lineHeight": "1.3",
+                                "fontWeight": "700"
+                            }
+                        ]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .film-grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .floating-element {
+            position: fixed;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: 0;
+            animation: float 15s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.15; }
+            90% { opacity: 0.15; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        .wheel-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            border: 8px solid #ffe16d; /* secondary-fixed */
+            box-shadow: 0 0 30px rgba(255, 225, 109, 0.4), inset 0 0 20px rgba(0,0,0,0.8);
+            background: #1a1a1a;
+            overflow: hidden;
+            transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+            z-index: 10;
+        }
+
+        .wheel-segment {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 50%;
+            transform-origin: 0% 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-left: 2px solid rgba(255, 225, 109, 0.3);
+        }
+
+        .wheel-segment-text {
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            transform: rotate(45deg);
+            color: #fff9ef;
+            font-family: 'Geist', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            white-space: nowrap;
+        }
+
+        .wheel-pointer {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 40px solid #8b0000; /* primary-container */
+            z-index: 20;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
+        }
+
+        .wheel-pointer::after {
+            content: '';
+            position: absolute;
+            top: -40px;
+            left: -15px;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 30px solid #ffe16d; /* Gold accent */
+        }
+
+        .spin-button {
+            background: linear-gradient(135deg, #ffe16d 0%, #ffdb3c 100%);
+            color: #221b00;
+            box-shadow: 0 4px 15px rgba(255, 225, 109, 0.4), inset 0 2px 5px rgba(255,255,255,0.5);
+            transition: all 0.3s ease;
+        }
+
+        .spin-button:hover {
+            box-shadow: 0 6px 20px rgba(255, 225, 109, 0.6), inset 0 2px 5px rgba(255,255,255,0.6);
+            transform: translateY(-2px);
+        }
+
+        .spin-button:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 10px rgba(255, 225, 109, 0.4);
+        }
+
+        .modal-overlay {
+            background: rgba(18, 20, 20, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .film-strip-border {
+            background-image:
+                    linear-gradient(90deg, transparent 50%, rgba(255,255,255,0.1) 50%),
+                    linear-gradient(90deg, transparent 50%, rgba(255,255,255,0.1) 50%);
+            background-size: 20px 4px, 20px 4px;
+            background-position: top, bottom;
+            background-repeat: repeat-x;
+            padding: 12px 0;
+        }
+
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<div class="film-grain"></div>
+<!-- Floating Background Elements (Generated via JS) -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none z-0" id="floating-bg"></div>
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-surface text-secondary-fixed dark:text-secondary-fixed-dim font-headline-md text-headline-md font-playfair-display w-full top-0 sticky bg-surface-container dark:bg-surface-container shadow-[0px_4px_20px_rgba(0,0,0,0.5)] border-b border-primary-container shadow-lg shadow-black/80 z-40">
+    <div class="flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto">
+        <div class="font-display-lg text-headline-lg font-black text-secondary-fixed tracking-tight">
+            CINEMA CLASSIC
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+            <a class="text-secondary-fixed font-bold border-b-2 border-secondary-fixed pb-1 hover:bg-primary-container/20 hover:text-secondary-fixed transition-all duration-300 active:scale-95 transition-transform duration-150" href="#">
+                Home
+            </a>
+            <a class="text-on-surface-variant hover:text-secondary font-medium transition-colors hover:bg-primary-container/20 hover:text-secondary-fixed transition-all duration-300 active:scale-95 transition-transform duration-150" href="#">
+                My List
+            </a>
+        </div>
+        <div class="flex items-center gap-4">
+            <button class="text-secondary-fixed hover:bg-primary-container/20 hover:text-secondary-fixed transition-all duration-300 active:scale-95 p-2 rounded-full">
+                <span class="material-symbols-outlined">account_circle</span>
+            </button>
+        </div>
+    </div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col items-center justify-center relative z-10 py-16 px-margin-mobile md:px-margin-desktop">
+    <div class="text-center mb-12 relative">
+        <h1 class="font-display-lg text-display-lg font-black text-secondary-fixed mb-4 tracking-tight" style="text-shadow: 0 4px 12px rgba(0,0,0,0.8);">
+            Spin the Reel
+        </h1>
+        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+            Let fate decide your next cinematic journey. Spin the wheel to select a classic masterpiece from our curated vault.
+        </p>
+    </div>
+    <!-- Wheel Section -->
+    <div class="relative mb-16 flex flex-col items-center">
+        <div class="wheel-pointer"></div>
+        <div class="wheel-container mb-12" id="wheel">
+            <!-- Segments generated via JS -->
+        </div>
+        <button class="spin-button font-headline-md text-headline-md font-bold px-12 py-4 rounded-full flex items-center gap-3" id="spinBtn">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">sync</span>
+            SPIN
+        </button>
+    </div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest text-primary dark:text-primary-fixed-dim font-label-sm text-label-sm uppercase tracking-widest w-full py-unit*4 mt-auto bg-surface-container-lowest border-t border-outline-variant/30 z-30">
+    <div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop gap-gutter w-full max-w-container-max mx-auto py-8">
+        <div class="font-headline-md text-primary mb-6 md:mb-0">
+            CINEMA CLASSIC
+        </div>
+        <div class="flex flex-wrap justify-center gap-6 mb-6 md:mb-0">
+            <a class="text-on-tertiary-container hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4 opacity-80 hover:opacity-100 transition-opacity" href="#">
+                Terms of Service
+            </a>
+            <a class="text-on-tertiary-container hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4 opacity-80 hover:opacity-100 transition-opacity" href="#">
+                Privacy Policy
+            </a>
+            <a class="text-on-tertiary-container hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4 opacity-80 hover:opacity-100 transition-opacity" href="#">
+                Contact Theatre
+            </a>
+        </div>
+        <div class="text-on-surface-variant opacity-60">
+            © 1950 Grand Cinema Classics. All Rights Reserved.
+        </div>
+    </div>
+</footer>
+<!-- Result Modal (Hidden by default) -->
+<div class="fixed inset-0 modal-overlay z-50 hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-500" id="resultModal">
+    <div class="bg-surface-container-highest border border-primary-container rounded-xl shadow-[0_20px_60px_rgba(0,0,0,0.8)] max-w-4xl w-full overflow-hidden transform scale-95 transition-transform duration-500" id="modalContent">
+        <div class="flex flex-col md:flex-row">
+            <!-- Movie Poster Side -->
+            <div class="md:w-2/5 relative">
+                <img class="w-full h-full object-cover min-h-[400px]" data-alt="A vintage movie poster for a mid-century classic film. Deep shadows, highly saturated technicolor hues, featuring stylized typography and dramatic lighting. The poster conveys a sense of suspense and glamour, typical of 1950s cinema. Elegant, dramatic, high contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-wRiCfV1SrlyY-w0JY647-2L0RXc6E4Vcj7QcTsa2sb84g5duV2aqcd7NaXD3KKahwkEBzCN7bS77UVN4MgUkFdWpqmRoPIhsp1OlK_Kmtp5OsuPaGyooDtMu4LzvYf2KraEh3LKGaCvTJw-LJHsOZ9eprJeRjiqG-6H5ILsUzNIsXCxj29DtAJVh7wTbaeTweKpGhCgQoJIW1ZocSvFL9TwPyp_0XX76OyFj2Wg-BCT9gXQNTse4lYu6LLA34yUel9LGBpaIsrg"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-highest to-transparent md:bg-gradient-to-r"></div>
+                <button class="absolute top-4 left-4 text-on-surface bg-surface/50 rounded-full p-2 hover:bg-surface transition-colors" id="closeModalBtn">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <!-- Movie Details Side -->
+            <div class="md:w-3/5 p-8 flex flex-col justify-center relative">
+                <div class="inline-block px-3 py-1 border-l-2 border-dashed border-secondary-fixed text-secondary-fixed font-label-sm text-label-sm mb-4 self-start tracking-widest bg-surface-container/50">
+                    CLASSIC THRILLER
+                </div>
+                <h2 class="font-headline-lg text-headline-lg text-secondary mb-2" id="modalTitle">Vertigo</h2>
+                <div class="flex items-center gap-4 text-on-surface-variant font-label-sm text-label-sm mb-6">
+                    <span>1958</span>
+                    <span class="w-1 h-1 bg-primary rounded-full"></span>
+                    <span>128 MIN</span>
+                    <span class="w-1 h-1 bg-primary rounded-full"></span>
+                    <span class="flex items-center gap-1 text-secondary-fixed"><span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span> 8.3</span>
+                </div>
+                <p class="font-body-md text-body-md text-on-surface mb-8 leading-relaxed">
+                    A former police detective juggles wrestling with his personal demons and becoming obsessed with a hauntingly beautiful woman. This masterpiece of suspense explores themes of psychological manipulation, romantic obsession, and the fragile nature of identity against the breathtaking backdrop of mid-century San Francisco.
+                </p>
+                <div class="film-strip-border mb-8"></div>
+                <div class="flex gap-4 mt-auto">
+                    <button class="bg-primary-container text-on-primary-container font-headline-md text-[18px] font-bold px-8 py-3 rounded flex items-center gap-2 hover:bg-primary hover:text-on-primary transition-colors shadow-lg shadow-black/50">
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                        Watch Now
+                    </button>
+                    <button class="border border-outline text-on-surface font-headline-md text-[18px] px-6 py-3 rounded hover:bg-surface-variant transition-colors flex items-center justify-center">
+                        <span class="material-symbols-outlined">add</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // Setup Wheel
+    const wheel = document.getElementById('wheel');
+    const spinBtn = document.getElementById('spinBtn');
+    const modal = document.getElementById('resultModal');
+    const modalContent = document.getElementById('modalContent');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const modalTitle = document.getElementById('modalTitle');
+
+    const movies = [
+        "Casablanca", "Vertigo", "Citizen Kane", "Psycho",
+        "Rear Window", "The Godfather", "Metropolis", "Modern Times"
+    ];
+
+    const colors = ['#8b0000', '#5a403c', '#1e2020', '#333535']; // primary-container, outline-variant, surface-container, surface-variant
+
+    // Generate wheel segments
+    const numSegments = movies.length;
+    const anglePerSegment = 360 / numSegments;
+
+    movies.forEach((movie, index) => {
+        const segment = document.createElement('div');
+        segment.className = 'wheel-segment';
+        segment.style.transform = `rotate(${index * anglePerSegment}deg) skewY(${-(90 - anglePerSegment)}deg)`;
+
+        // Alternate colors
+        const bgColor = colors[index % colors.length];
+        segment.style.backgroundColor = bgColor;
+
+        const textContainer = document.createElement('div');
+        textContainer.className = 'wheel-segment-text';
+        // Un-skew and rotate text to align properly
+        textContainer.style.transform = `skewY(${90 - anglePerSegment}deg) rotate(${anglePerSegment / 2}deg) translate(80px, 10px)`;
+        textContainer.textContent = movie;
+
+        segment.appendChild(textContainer);
+        wheel.appendChild(segment);
+    });
+
+    // Spinning Logic
+    let currentRotation = 0;
+    let isSpinning = false;
+
+    spinBtn.addEventListener('click', () => {
+        if (isSpinning) return;
+        isSpinning = true;
+
+        // Calculate random spins (3-6 full rotations) + random offset
+        const spins = Math.floor(Math.random() * 4) + 3;
+        const randomDegree = Math.floor(Math.random() * 360);
+        const totalRotation = currentRotation + (spins * 360) + randomDegree;
+
+        wheel.style.transform = `rotate(${totalRotation}deg)`;
+        currentRotation = totalRotation;
+
+        // Determine winning segment
+        // Normalize rotation to 0-360, account for initial pointer offset (top = 0deg)
+        const normalizedRotation = totalRotation % 360;
+        // The segment at the top (pointer) is offset by the rotation
+        const winningAngle = (360 - normalizedRotation) % 360;
+        const winningIndex = Math.floor(winningAngle / anglePerSegment);
+        const winningMovie = movies[winningIndex];
+
+        // Wait for animation to finish
+        setTimeout(() => {
+            isSpinning = false;
+            showModal(winningMovie);
+        }, 4200); // slightly longer than CSS transition to ensure it stops
+    });
+
+    function showModal(movieTitle) {
+        modalTitle.textContent = movieTitle;
+        modal.classList.remove('hidden');
+        // Small delay to allow display:block to apply before animating opacity
+        setTimeout(() => {
+            modal.classList.remove('opacity-0');
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+        }, 50);
+    }
+
+    function hideModal() {
+        modal.classList.add('opacity-0');
+        modalContent.classList.remove('scale-100');
+        modalContent.classList.add('scale-95');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 500); // matches transition duration
+    }
+
+    closeModalBtn.addEventListener('click', hideModal);
+
+    // Setup Floating Background Elements (Popcorn & Glasses icons)
+    const floatingBg = document.getElementById('floating-bg');
+    const icons = ['movie', 'local_activity', 'theaters'];
+
+    for (let i = 0; i < 15; i++) {
+        const el = document.createElement('span');
+        el.className = 'material-symbols-outlined floating-element text-on-surface-variant';
+        el.textContent = icons[Math.floor(Math.random() * icons.length)];
+
+        // Randomize position, size, and animation timing
+        const left = Math.random() * 100;
+        const size = Math.random() * 40 + 20;
+        const delay = Math.random() * 15;
+        const duration = Math.random() * 10 + 15;
+
+        el.style.left = `${left}vw`;
+        el.style.fontSize = `${size}px`;
+        el.style.animationDelay = `${delay}s`;
+        el.style.animationDuration = `${duration}s`;
+
+        floatingBg.appendChild(el);
+    }
+</script>
+</body></html>

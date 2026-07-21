@@ -1,0 +1,344 @@
+<!DOCTYPE html><html class="dark" lang="en" style=""><head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>My List - Cinema Classic</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&amp;family=Geist:wght@600&amp;family=Playfair+Display:wght@700;900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#ffb4a8",
+                        "surface-dim": "#121414",
+                        "inverse-on-surface": "#2f3131",
+                        "tertiary-fixed": "#e5e2e1",
+                        "on-secondary": "#3a3000",
+                        "surface": "#121414",
+                        "surface-container-highest": "#333535",
+                        "tertiary": "#c8c6c5",
+                        "on-primary-fixed": "#410000",
+                        "inverse-surface": "#e2e2e2",
+                        "on-secondary-fixed": "#221b00",
+                        "surface-tint": "#ffb4a8",
+                        "on-secondary-fixed-variant": "#544600",
+                        "on-primary": "#690000",
+                        "on-primary-container": "#ff907f",
+                        "secondary-container": "#ffdb3c",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "on-surface-variant": "#e3beb8",
+                        "surface-container-lowest": "#0c0f0f",
+                        "surface-variant": "#333535",
+                        "secondary-fixed-dim": "#e9c400",
+                        "secondary": "#fff9ef",
+                        "on-tertiary": "#313030",
+                        "tertiary-container": "#434242",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "on-background": "#e2e2e2",
+                        "on-primary-fixed-variant": "#920703",
+                        "secondary-fixed": "#ffe16d",
+                        "surface-container": "#1e2020",
+                        "outline": "#aa8984",
+                        "error-container": "#93000a",
+                        "outline-variant": "#5a403c",
+                        "surface-container-high": "#282a2b",
+                        "background": "#121414",
+                        "primary-container": "#8b0000",
+                        "on-secondary-container": "#725f00",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-container": "#b1aeae",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "inverse-primary": "#b52619",
+                        "on-surface": "#e2e2e2",
+                        "surface-bright": "#38393a",
+                        "surface-container-low": "#1a1c1c",
+                        "on-error": "#690005",
+                        "primary-fixed": "#ffdad4",
+                        "primary": "#ffb4a8",
+                        "error": "#ffb4ab"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "margin-desktop": "48px",
+                        "gutter": "24px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Work Sans"],
+                        "body-md": ["Work Sans"],
+                        "label-sm": ["Geist"],
+                        "headline-md": ["Playfair Display"],
+                        "display-mobile": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "700" }],
+                        "display-mobile": ["40px", { "lineHeight": "1.2", "fontWeight": "900" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.3", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .film-grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .gold-glow:hover {
+            box-shadow: 0 0 15px 2px rgba(255, 215, 0, 0.4), inset 0 0 10px 1px rgba(255, 215, 0, 0.2);
+            border-color: #ffd700;
+        }
+
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(30deg);
+            animation: shimmer-effect 3s infinite linear;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer-effect {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+
+        .film-strip-border {
+            position: relative;
+        }
+        .film-strip-border::before, .film-strip-border::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 12px;
+            background-color: #0c0f0f;
+            background-image: radial-gradient(#fff 2px, transparent 3px);
+            background-size: 16px 12px;
+            background-position: 4px center;
+            z-index: 10;
+        }
+        .film-strip-border::before { top: -12px; }
+        .film-strip-border::after { bottom: -12px; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col relative overflow-x-hidden">
+<div class="film-grain"></div>
+<!-- TopNavBar -->
+<nav class="w-full top-0 sticky z-40 bg-surface dark:bg-surface shadow-[0px_4px_20px_rgba(0,0,0,0.5)] border-b border-primary-container shadow-lg shadow-black/80">
+    <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+        <a class="font-display-lg text-headline-lg font-black text-secondary-fixed tracking-tight" href="#">CINEMA CLASSIC</a><div class="relative hidden md:block w-64 lg:w-80 mr-8">
+        <div class="relative flex items-center">
+            <span class="material-symbols-outlined absolute left-3 text-on-surface-variant">search</span>
+            <input class="w-full bg-surface-container-highest border border-outline-variant/30 rounded-full py-2 pl-10 pr-4 text-body-md focus:outline-none focus:border-secondary-fixed transition-colors" onblur="setTimeout(() =&gt; document.getElementById('search-suggestions').classList.add('hidden'), 200)" onfocus="document.getElementById('search-suggestions').classList.remove('hidden')" placeholder="Search classics..." type="text">
+        </div>
+        <div class="absolute top-full left-0 w-full mt-2 bg-surface-container-highest border border-outline-variant/30 rounded-xl shadow-2xl z-50 overflow-hidden hidden" id="search-suggestions">
+            <div class="p-2 hover:bg-surface-variant cursor-pointer flex items-center gap-3 transition-colors" onclick="openModal('The Godfather', '1972', 'Francis Ford Coppola', 'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son. A sprawling epic of family, loyalty, and the corrupting nature of power.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuC29iS42CyKqt6xngTuiK686ev8csY-qBs3EIgh0n5aYXqdcR2JIFM9fWUUFrHFeABNTnQRy1k_7mJXvV34i89mUOqeBHWIbm2ukUME8i2OspbGJF4Z1GlHzMipfwPj9WLPJoovqrhZyjeTrw2n3Gb3uALCGPx1oWeKxJBNzyuGre0GdfoClyJkWNEl6oWaaCtzxmpUpikRwL0MOyrDa2_-kIlUdYxfm92bZuD2vOlqteIT4pH_R7acM_UNcq1UKJCQ3XIqAsWsjOc')">
+                <div class="w-10 h-14 bg-surface-container rounded overflow-hidden flex-shrink-0">
+                    <img alt="The Godfather" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC29iS42CyKqt6xngTuiK686ev8csY-qBs3EIgh0n5aYXqdcR2JIFM9fWUUFrHFeABNTnQRy1k_7mJXvV34i89mUOqeBHWIbm2ukUME8i2OspbGJF4Z1GlHzMipfwPj9WLPJoovqrhZyjeTrw2n3Gb3uALCGPx1oWeKxJBNzyuGre0GdfoClyJkWNEl6oWaaCtzxmpUpikRwL0MOyrDa2_-kIlUdYxfm92bZuD2vOlqteIT4pH_R7acM_UNcq1UKJCQ3XIqAsWsjOc">
+                </div>
+                <div>
+                    <div class="text-on-surface font-bold text-body-md">The Godfather</div>
+                    <div class="text-on-surface-variant text-label-sm">1972 • Francis Ford Coppola</div>
+                </div>
+            </div>
+            <div class="p-2 hover:bg-surface-variant cursor-pointer flex items-center gap-3 transition-colors" onclick="openModal('Casablanca', '1942', 'Michael Curtiz', 'In Casablanca, Morocco in December 1941, a cynical American expatriate encounters a former lover, with unforeseen complications.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuDB-aj-j9FG05Fdx--883WbLdGNScQaBmdtcyHzVtw5SYlzFhtuioqfWqCq6H3tuVB1Y2BhxAzGUwEOruyLH4liG-6stNN4rvIy337Qi_GIpuJWmcK3XZyDf8sccHkgMdBWojuf1qfMz4_yEQILBOV7vc-2BRV4DZlet2WLE5KVQJf7NP3E5MpoqPkAcBdxNc9OcsXsawN5PjmlquWdm3oQhblnBO7C4VHbGpC3tolz9O0--g9WSXqpIaTWM2fq012uhe5CBvGYDe0')">
+                <div class="w-10 h-14 bg-surface-container rounded overflow-hidden flex-shrink-0">
+                    <img alt="Casablanca" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB-aj-j9FG05Fdx--883WbLdGNScQaBmdtcyHzVtw5SYlzFhtuioqfWqCq6H3tuVB1Y2BhxAzGUwEOruyLH4liG-6stNN4rvIy337Qi_GIpuJWmcK3XZyDf8sccHkgMdBWojuf1qfMz4_yEQILBOV7vc-2BRV4DZlet2WLE5KVQJf7NP3E5MpoqPkAcBdxNc9OcsXsawN5PjmlquWdm3oQhblnBO7C4VHbGpC3tolz9O0--g9WSXqpIaTWM2fq012uhe5CBvGYDe0">
+                </div>
+                <div>
+                    <div class="text-on-surface font-bold text-body-md">Casablanca</div>
+                    <div class="text-on-surface-variant text-label-sm">1942 • Michael Curtiz</div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute top-full left-0 w-full mt-2 bg-surface-container-highest border border-outline-variant/30 rounded-xl shadow-2xl hidden z-50 overflow-hidden" id="search-suggestions"><div class="p-2 hover:bg-surface-variant cursor-pointer flex items-center gap-3 transition-colors" onclick="openModal('The Godfather', '1972', 'Francis Ford Coppola', 'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son. A sprawling epic of family, loyalty, and the corrupting nature of power.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuC29iS42CyKqt6xngTuiK686ev8csY-qBs3EIgh0n5aYXqdcR2JIFM9fWUUFrHFeABNTnQRy1k_7mJXvV34i89mUOqeBHWIbm2ukUME8i2OspbGJF4Z1GlHzMipfwPj9WLPJoovqrhZyjeTrw2n3Gb3uALCGPx1oWeKxJBNzyuGre0GdfoClyJkWNEl6oWaaCtzxmpUpikRwL0MOyrDa2_-kIlUdYxfm92bZuD2vOlqteIT4pH_R7acM_UNcq1UKJCQ3XIqAsWsjOc')"><div class="w-10 h-14 bg-surface-container rounded overflow-hidden flex-shrink-0"><img alt="The Godfather" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC29iS42CyKqt6xngTuiK686ev8csY-qBs3EIgh0n5aYXqdcR2JIFM9fWUUFrHFeABNTnQRy1k_7mJXvV34i89mUOqeBHWIbm2ukUME8i2OspbGJF4Z1GlHzMipfwPj9WLPJoovqrhZyjeTrw2n3Gb3uALCGPx1oWeKxJBNzyuGre0GdfoClyJkWNEl6oWaaCtzxmpUpikRwL0MOyrDa2_-kIlUdYxfm92bZuD2vOlqteIT4pH_R7acM_UNcq1UKJCQ3XIqAsWsjOc"></div><div><div class="text-on-surface font-bold text-body-md">The Godfather</div><div class="text-on-surface-variant text-label-sm">1972 • Francis Ford Coppola</div></div></div><div class="p-2 hover:bg-surface-variant cursor-pointer flex items-center gap-3 transition-colors" onclick="openModal('Casablanca', '1942', 'Michael Curtiz', 'In Casablanca, Morocco in December 1941, a cynical American expatriate encounters a former lover, with unforeseen complications.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuDB-aj-j9FG05Fdx--883WbLdGNScQaBmdtcyHzVtw5SYlzFhtuioqfWqCq6H3tuVB1Y2BhxAzGUwEOruyLH4liG-6stNN4rvIy337Qi_GIpuJWmcK3XZyDf8sccHkgMdBWojuf1qfMz4_yEQILBOV7vc-2BRV4DZlet2WLE5KVQJf7NP3E5MpoqPkAcBdxNc9OcsXsawN5PjmlquWdm3oQhblnBO7C4VHbGpC3tolz9O0--g9WSXqpIaTWM2fq012uhe5CBvGYDe0')"><div class="w-10 h-14 bg-surface-container rounded overflow-hidden flex-shrink-0"><img alt="Casablanca" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB-aj-j9FG05Fdx--883WbLdGNScQaBmdtcyHzVtw5SYlzFhtuioqfWqCq6H3tuVB1Y2BhxAzGUwEOruyLH4liG-6stNN4rvIy337Qi_GIpuJWmcK3XZyDf8sccHkgMdBWojuf1qfMz4_yEQILBOV7vc-2BRV4DZlet2WLE5KVQJf7NP3E5MpoqPkAcBdxNc9OcsXsawN5PjmlquWdm3oQhblnBO7C4VHbGpC3tolz9O0--g9WSXqpIaTWM2fq012uhe5CBvGYDe0"></div><div><div class="text-on-surface font-bold text-body-md">Casablanca</div><div class="text-on-surface-variant text-label-sm">1942 • Michael Curtiz</div></div></div></div></div>
+        <div class="hidden md:flex gap-8 items-center font-headline-md text-headline-md font-playfair-display">
+            <a class="text-on-surface-variant hover:text-secondary font-medium transition-colors hover:bg-primary-container/20 hover:text-secondary-fixed transition-all duration-300 active:scale-95 transition-transform duration-150 px-3 py-1 rounded" href="#">Home</a>
+            <a class="text-secondary-fixed font-bold border-b-2 border-secondary-fixed pb-1 hover:bg-primary-container/20 hover:text-secondary-fixed transition-all duration-300 active:scale-95 transition-transform duration-150 px-3" href="#">My List</a>
+        </div>
+        <div class="flex items-center gap-4 text-secondary-fixed dark:text-secondary-fixed-dim">
+            <button class="p-2 hover:bg-primary-container/20 rounded-full transition-all duration-300 active:scale-95 text-secondary-fixed">
+                <span class="material-symbols-outlined">account_circle</span>
+            </button>
+        </div>
+    </div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 relative z-10">
+    <!-- Header & Add Movie -->
+    <section class="mb-16">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-8 border-b border-outline-variant/30 pb-6">
+            <div>
+                <h1 class="font-display-lg text-display-mobile md:text-display-lg text-secondary-fixed mb-2">My Favorites</h1><div class="relative inline-block mt-4 mb-2 group">
+                <select class="appearance-none bg-surface-container-high text-secondary-fixed font-playfair-display font-bold text-headline-md py-2 pl-4 pr-10 rounded border border-secondary-fixed/30 focus:border-secondary-fixed focus:ring-1 focus:ring-secondary-fixed/50 transition-all cursor-pointer gold-glow">
+                    <option selected="" value="favorites">Favorites</option>
+                    <option value="watchlist">Watchlist</option>
+                    <option value="custom">Custom List</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-secondary-fixed">
+                    <span class="material-symbols-outlined">expand_more</span>
+                </div>
+            </div>
+                <p class="font-body-lg text-body-lg text-on-surface-variant">Curate your personal cinematic collection.</p>
+            </div>
+            <div class="bg-surface-container-highest p-6 rounded-lg border border-outline-variant shadow-lg max-w-md w-full relative overflow-hidden">
+                <div class="absolute inset-0 bg-primary-container/10 pointer-events-none"></div>
+                <h2 class="font-headline-md text-headline-md text-on-surface mb-4">Add a Classic</h2>
+                <form class="flex flex-col gap-4 relative z-10">
+                    <div class="relative">
+                        <input class="w-full bg-surface-lowest text-on-surface border-0 border-b-2 border-secondary-fixed/50 focus:border-secondary-fixed focus:ring-0 px-0 py-2 font-body-md bg-transparent placeholder-on-surface-variant/50 transition-colors" placeholder="Enter movie title..." type="text">
+                        <span class="material-symbols-outlined absolute right-0 top-2 text-secondary-fixed/50">movie</span>
+                    </div>
+                    <button class="shimmer bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm uppercase tracking-widest py-3 px-6 rounded hover:bg-secondary-fixed-dim transition-colors flex items-center justify-center gap-2 mt-2 font-bold shadow-[0_0_15px_rgba(255,215,0,0.3)]" type="button">
+                        <span class="material-symbols-outlined text-[18px]">add</span> Add to List
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- Movies Grid -->
+    <section>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter">
+            <!-- Movie Card 1 -->
+            <div class="group relative bg-primary-container rounded-lg overflow-hidden border border-outline-variant/30 transition-all duration-500 hover:scale-[1.02] gold-glow flex flex-col h-full shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10 pointer-events-none"></div>
+                <div class="aspect-[2/3] w-full overflow-hidden relative">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A vintage, high-contrast, noir-style cinematic movie poster for Casablanca featuring dramatic lighting, deep shadows, and an aura of 1940s mystery and romance in a smoky setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWjNo10WK0BiVOqks6xMO0Bae3a73ohmr9_X9x9usaERhuO1dKDuKM-OGb9W8Qpah41XD0-skaBKws0Hx77oP0Z_7M0e4m3FvUYZ_YS33KVs-mt92XtX5A8UpHxFgj0RKUkOe2v8VtfCEBeGPE3-1LqMznUC4FM9TaoOabACKA-s34zaGoMYyfvXiU4bj8Z7yib233PVxqA6Qog25UeT7c1lNnnJhEx5yslOfcyQbl_KwNkDuBSFN89ARwukvLsqr1eMd00kCeuWM">
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 p-6 z-20 flex flex-col justify-end h-full">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="font-label-sm text-label-sm px-2 py-1 border border-dashed border-secondary-fixed/50 text-secondary-fixed bg-black/50 rounded backdrop-blur-sm">ROMANCE</span>
+                        <span class="font-label-sm text-label-sm px-2 py-1 border border-dashed border-outline-variant/50 text-on-surface-variant bg-black/50 rounded backdrop-blur-sm">1942</span>
+                    </div>
+                    <h3 class="font-headline-md text-headline-md text-on-surface mb-4 line-clamp-2">Casablanca</h3>
+                    <button class="w-full bg-transparent border border-error text-error hover:bg-error/10 font-label-sm text-label-sm uppercase tracking-widest py-2 rounded transition-colors flex items-center justify-center gap-2 mt-auto">
+                        <span class="material-symbols-outlined text-[16px]">delete</span> Remove
+                    </button>
+                </div>
+            </div>
+            <!-- Movie Card 2 -->
+            <div class="group relative bg-primary-container rounded-lg overflow-hidden border border-outline-variant/30 transition-all duration-500 hover:scale-[1.02] gold-glow flex flex-col h-full shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10 pointer-events-none"></div>
+                <div class="aspect-[2/3] w-full overflow-hidden relative">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A dark, moody, sepia-toned cinematic movie poster for The Godfather, featuring heavy shadows, a distinguished figure in a tuxedo, and a sense of powerful, hidden authority in a mid-century mafia setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJUxba9HMuh0LYQUTceBHtW0cD6pHlz5eFkLaqnh6bzkxcOxuvdOuKtPWRx4W5fWBDB5pE-AV9yADYKl1puxksWXlppq-aSLBVU6_W0hTowghW25J7SklVTXA80r_7db-kIkgQJEVhSJfSBbD5QvXXQmAw74n3dZosWlqfM0Mv6XoHeSTye3fAmMRMH1sQ2sxPrXgJBurQuNEjtFiSPnZaEQ2ynZGgo9sgVkZaukQXu9UyqMWlz6RtZ14O_PSB_b77NjYfZMyFKYc">
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 p-6 z-20 flex flex-col justify-end h-full">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="font-label-sm text-label-sm px-2 py-1 border border-dashed border-secondary-fixed/50 text-secondary-fixed bg-black/50 rounded backdrop-blur-sm">CRIME</span>
+                        <span class="font-label-sm text-label-sm px-2 py-1 border border-dashed border-outline-variant/50 text-on-surface-variant bg-black/50 rounded backdrop-blur-sm">1972</span>
+                    </div>
+                    <h3 class="font-headline-md text-headline-md text-on-surface mb-4 line-clamp-2">The Godfather</h3>
+                    <button class="w-full bg-transparent border border-error text-error hover:bg-error/10 font-label-sm text-label-sm uppercase tracking-widest py-2 rounded transition-colors flex items-center justify-center gap-2 mt-auto">
+                        <span class="material-symbols-outlined text-[16px]">delete</span> Remove
+                    </button>
+                </div>
+            </div>
+            <!-- Movie Card 3 -->
+            <div class="group relative bg-primary-container rounded-lg overflow-hidden border border-outline-variant/30 transition-all duration-500 hover:scale-[1.02] gold-glow flex flex-col h-full shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10 pointer-events-none"></div>
+                <div class="aspect-[2/3] w-full overflow-hidden relative">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A suspenseful, high-tension cinematic movie poster for Psycho, featuring stark black and white contrasts, a foreboding gothic house silhouette, and sharp, jagged graphic design elements." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGHU4dGQ-3pm9RmXNcIFU3BbsPMjRapxuwdTRPIMDoJqVZsMURGcucWITAPd_MedMolNStJtpvLZe2DX6zYrgDfzy2KcUaADj18AnfRhPLmWR0Mvhl1ACw-qIHXQOWwtgaYkq4p1JpPnqgMlKPqB_i6gKFIUodkBLb4y20uDehWwo64h9NOp2upM6fMN2Vrmfr7baEOWfyGwYieqBflQ0yWmrIlxLKdDbQA-b7M_1HycYVdrSKGC-g4Ir7db2Ph2NXYqJ_Z_3PLME">
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 p-6 z-20 flex flex-col justify-end h-full">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="font-label-sm text-label-sm px-2 py-1 border border-dashed border-secondary-fixed/50 text-secondary-fixed bg-black/50 rounded backdrop-blur-sm">THRILLER</span>
+                        <span class="font-label-sm text-label-sm px-2 py-1 border border-dashed border-outline-variant/50 text-on-surface-variant bg-black/50 rounded backdrop-blur-sm">1960</span>
+                    </div>
+                    <h3 class="font-headline-md text-headline-md text-on-surface mb-4 line-clamp-2">Psycho</h3>
+                    <button class="w-full bg-transparent border border-error text-error hover:bg-error/10 font-label-sm text-label-sm uppercase tracking-widest py-2 rounded transition-colors flex items-center justify-center gap-2 mt-auto">
+                        <span class="material-symbols-outlined text-[16px]">delete</span> Remove
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-unit*4 mt-auto bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/30 relative z-40">
+    <div class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop gap-gutter w-full max-w-container-max mx-auto py-8">
+        <div class="font-headline-md text-primary mb-4 md:mb-0">
+            CINEMA CLASSIC
+        </div>
+        <div class="flex gap-6 font-label-sm text-label-sm uppercase tracking-widest">
+            <a class="text-on-tertiary-container hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4 opacity-80 hover:opacity-100 transition-opacity" href="#">Terms of Service</a>
+            <a class="text-on-tertiary-container hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4 opacity-80 hover:opacity-100 transition-opacity" href="#">Privacy Policy</a>
+            <a class="text-on-tertiary-container hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4 opacity-80 hover:opacity-100 transition-opacity" href="#">Contact Theatre</a>
+        </div>
+        <div class="font-label-sm text-label-sm uppercase tracking-widest text-on-tertiary-container mt-4 md:mt-0">
+            © 1950 Grand Cinema Classics. All Rights Reserved.
+        </div>
+    </div>
+</footer>
+<div class="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-500" id="resultModal" onclick="if(event.target === this) closeModal()">
+    <div class="bg-surface-container-highest border border-primary-container rounded-xl shadow-[0_20px_60px_rgba(0,0,0,0.8)] max-w-4xl w-full overflow-hidden transform scale-95 transition-transform duration-500" id="modalContent">
+        <div class="flex flex-col md:flex-row">
+            <div class="md:w-2/5 relative">
+                <img alt="Movie Poster" class="w-full h-full object-cover min-h-[500px]" id="modalPoster" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC29iS42CyKqt6xngTuiK686ev8csY-qBs3EIgh0n5aYXqdcR2JIFM9fWUUFrHFeABNTnQRy1k_7mJXvV34i89mUOqeBHWIbm2ukUME8i2OspbGJF4Z1GlHzMipfwPj9WLPJoovqrhZyjeTrw2n3Gb3uALCGPx1oWeKxJBNzyuGre0GdfoClyJkWNEl6oWaaCtzxmpUpikRwL0MOyrDa2_-kIlUdYxfm92bZuD2vOlqteIT4pH_R7acM_UNcq1UKJCQ3XIqAsWsjOc">
+                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-highest via-transparent to-transparent"></div>
+                <button class="absolute top-4 left-4 text-on-surface bg-surface/50 rounded-full p-2 hover:bg-surface transition-colors" id="closeModalBtn" onclick="closeModal()">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="md:w-3/5 p-10 flex flex-col justify-center bg-surface-container-highest">
+                <div class="inline-block px-4 py-1 border border-secondary-fixed text-secondary-fixed font-label-sm text-label-sm mb-6 self-start tracking-[0.2em] uppercase bg-secondary-fixed/10">
+                    Featured Masterpiece
+                </div>
+                <h2 class="font-display-lg text-display-lg text-secondary-fixed mb-2 leading-none" id="modalTitle">The Godfather</h2>
+                <div class="flex items-center gap-4 text-on-surface-variant font-label-sm text-label-sm mb-8 tracking-widest">
+                    <span id="modalYear" class="">1972</span>
+                    <span class="w-1 h-1 bg-secondary-fixed rounded-full"></span>
+                    <span id="modalDirector" class="">FRANCIS FORD COPPOLA</span>
+                    <span class="w-1 h-1 bg-secondary-fixed rounded-full"></span>
+                    <span class="flex items-center gap-1 text-secondary-fixed"><span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span> 9.2</span>
+                </div>
+                <p class="font-body-lg text-body-lg text-on-surface mb-10 leading-relaxed italic opacity-90" id="modalSynopsis">
+                    The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son. A sprawling epic of family, loyalty, and the corrupting nature of power.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <button class="bg-secondary-fixed text-on-secondary-fixed font-headline-md text-[16px] font-bold px-8 py-4 rounded-full flex items-center gap-2 hover:bg-secondary-fixed-dim transition-all shadow-xl active:scale-95">
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+                        ADD TO FAVORITES
+                    </button>
+                    <button class="border-2 border-secondary-fixed text-secondary-fixed font-headline-md text-[16px] font-bold px-8 py-4 rounded-full hover:bg-secondary-fixed/10 transition-all active:scale-95">
+                        WATCHLIST
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-500" id="resultModal" onclick="if(event.target === this) closeModal()"><div class="bg-surface-container-highest border border-primary-container rounded-xl shadow-[0_20px_60px_rgba(0,0,0,0.8)] max-w-4xl w-full overflow-hidden transform scale-95 transition-transform duration-500" id="modalContent"><div class="flex flex-col md:flex-row"><div class="md:w-2/5 relative"><img alt="Movie Poster" class="w-full h-full object-cover min-h-[500px]" id="modalPoster" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC29iS42CyKqt6xngTuiK686ev8csY-qBs3EIgh0n5aYXqdcR2JIFM9fWUUFrHFeABNTnQRy1k_7mJXvV34i89mUOqeBHWIbm2ukUME8i2OspbGJF4Z1GlHzMipfwPj9WLPJoovqrhZyjeTrw2n3Gb3uALCGPx1oWeKxJBNzyuGre0GdfoClyJkWNEl6oWaaCtzxmpUpikRwL0MOyrDa2_-kIlUdYxfm92bZuD2vOlqteIT4pH_R7acM_UNcq1UKJCQ3XIqAsWsjOc"><div class="absolute inset-0 bg-gradient-to-t from-surface-container-highest via-transparent to-transparent"></div><button class="absolute top-4 left-4 text-on-surface bg-surface/50 rounded-full p-2 hover:bg-surface transition-colors" id="closeModalBtn" onclick="closeModal()"><span class="material-symbols-outlined">close</span></button></div><div class="md:w-3/5 p-10 flex flex-col justify-center bg-surface-container-highest"><div class="inline-block px-4 py-1 border border-secondary-fixed text-secondary-fixed font-label-sm text-label-sm mb-6 self-start tracking-[0.2em] uppercase bg-secondary-fixed/10">Featured Masterpiece</div><h2 class="font-display-lg text-display-lg text-secondary-fixed mb-2 leading-none" id="modalTitle">The Godfather</h2><div class="flex items-center gap-4 text-on-surface-variant font-label-sm text-label-sm mb-8 tracking-widest"><span id="modalYear" class="">1972</span><span class="w-1 h-1 bg-secondary-fixed rounded-full"></span><span id="modalDirector" class="">FRANCIS FORD COPPOLA</span><span class="w-1 h-1 bg-secondary-fixed rounded-full"></span><span class="flex items-center gap-1 text-secondary-fixed"><span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span> 9.2</span></div><p class="font-body-lg text-body-lg text-on-surface mb-10 leading-relaxed italic opacity-90" id="modalSynopsis">The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son. A sprawling epic of family, loyalty, and the corrupting nature of power.</p><div class="flex flex-wrap gap-4"><button class="bg-secondary-fixed text-on-secondary-fixed font-headline-md text-[16px] font-bold px-8 py-4 rounded-full flex items-center gap-2 hover:bg-secondary-fixed-dim transition-all shadow-xl active:scale-95"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span> ADD TO FAVORITES</button><button class="border-2 border-secondary-fixed text-secondary-fixed font-headline-md text-[16px] font-bold px-8 py-4 rounded-full hover:bg-secondary-fixed/10 transition-all active:scale-95">WATCHLIST</button></div></div></div></div></div><script>function openModal(title, year, director, synopsis, posterUrl) { const modal = document.getElementById('resultModal'); const content = document.getElementById('modalContent'); document.getElementById('modalTitle').innerText = title; document.getElementById('modalYear').innerText = year; document.getElementById('modalDirector').innerText = director.toUpperCase(); document.getElementById('modalSynopsis').innerText = synopsis; document.getElementById('modalPoster').src = posterUrl; modal.classList.remove('hidden'); setTimeout(() => { modal.classList.remove('opacity-0'); content.classList.remove('scale-95'); }, 10); } function closeModal() { const modal = document.getElementById('resultModal'); const content = document.getElementById('modalContent'); modal.classList.add('opacity-0'); content.classList.add('scale-95'); setTimeout(() => { modal.classList.add('hidden'); }, 500); }</script></body></html>
